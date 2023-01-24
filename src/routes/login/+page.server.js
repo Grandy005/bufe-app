@@ -9,7 +9,7 @@ export function load({ locals }) { // ha bevagyunk jelentkezve dobjon át a főo
 export const actions = { // Bejelentkezés, megkapja az oldal FORM data-ját és az alapján beléptet
 	default: async ({ locals, request }) => {
 		const body = Object.fromEntries(await request.formData());
-
+		console.log(body);
 		try {
 			await locals.pb.collection('users').authWithPassword(body.email.concat('@kkszki.hu'),body.password);
 		} catch (err) {

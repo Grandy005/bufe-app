@@ -10,7 +10,7 @@ export const actions = {
 	default: async ({ locals, request }) => {
 		let body = Object.fromEntries(await request.formData());
 		body.email = body.email.concat('@kkszki.hu');
-
+		console.log(body);
 		try {
 			await locals.pb.collection('users').create({...body});
 		} catch (err) {

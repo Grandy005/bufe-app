@@ -8,7 +8,7 @@ let error = form?.error
 let password
 </script>
 
-<main in:fade={{duration: 180}} class="font-sofia">
+<main in:fade={{duration: 180}}>
    <div class="login flex flex-col items-center mt-24">
       <h1 class="font-extrablack text-5xl text-blue-1">Kandó Büfé</h1>
       <h2 class="text-blue-1 text-2xl font-bold mt-12 mb-6">Bejelentkezés</h2>
@@ -32,88 +32,10 @@ let password
       </form>
 
 		<div class="regin-button flex flex-col items-center">
-			<h2 class="mt-3 mb-1">Nincs még fiókod?</h2> <a href="/register"><button class="bg-gray-1 text-blue-1 text-lg px-8 py-2 rounded-md font-semibold">Regisztráció</button></a>
+			<h2 class="mt-3 mb-1">Nincs még fiókod?</h2>
+         <a href="/register"><button class="bg-gray-1 text-blue-1 text-lg px-8 py-2 rounded-md font-semibold">Regisztráció</button></a>
 		</div>
 
    </div>
    
 </main>
-
-<!-- <style lang="scss">
-
-	main {
-		width: 100vw;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-	}
-
-   .regin-button {
-      width: 100vw;
-      text-align: center;
-      margin-top: 5vh;
-      color: white;
-
-      button {
-         background-color: rgb(20, 20, 20);
-         padding: 1ch;
-         border-radius: 4vw;
-         color: white;
-         margin-top: 1ch;
-      }
-   }
-
-   .login {
-      text-align: center;
-      color: white;
-
-      img {
-         display: block;
-         margin: 0 auto;
-         margin-bottom: 10%;
-      }
-   }
-
-   form {
-      input {
-         border: 0.2vw solid white;
-         border-radius: 4vw;
-         width: 50%;
-         color: white;
-         background-color: rgb(20, 20, 20);
-         padding-top: 1vh;
-         padding-bottom: 1vh;
-         padding-left: 3vw;
-         margin-top: 1vh;
-         margin-bottom: 3vw;
-      }
-
-      #email-form-label {
-         margin-right: 10ch;
-      }
-
-      #email-form {
-         width: calc(50% - 10ch);
-      }
-
-      p {
-         // transform: translateX(-10vw);
-         display: inline-block;
-      }
-
-      button {
-         border-radius: 4vw;
-         width: 80%;
-         padding: 3vw;
-         margin-top: 2vh;
-         background-color: rgb(20, 20, 20);
-         color: white;
-      }
-
-      #error {
-         margin-top: 1vh;
-         color: var(--accent-color);
-      }
-   }
-
-</style> -->
