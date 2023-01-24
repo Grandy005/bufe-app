@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-node';
 import preprocessor from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,7 +14,9 @@ const config = {
 
 	kit: {
 		adapter: adapter({ out: 'bufe-app' })
-	}
+	},
+
+	preprocess: vitePreprocess()
 };
 
 export default config;

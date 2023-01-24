@@ -3,6 +3,7 @@
    import { page } from '$app/stores';
 	import { onMount } from 'svelte';
   	import { pwaInfo } from 'virtual:pwa-info';
+   import "../app.css";
 
 	const noKeyURLs = ['/admin','/rendelesek']
 
@@ -41,7 +42,7 @@
     {@html webManifest}
 </svelte:head>
 
-<style lang="scss">
+<!--<style lang="scss">
    :global(*) {
       margin: 0;
       padding: 0;
@@ -68,4 +69,4 @@
       font-family: Noto Serif Telugu;
       src: url(/NotoSerifTelugu-VariableFont_wght.ttf);
    }
-</style>
+</style>-->
