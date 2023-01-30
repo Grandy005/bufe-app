@@ -5,11 +5,12 @@
 
    let name = form?.name;
    let email = form?.email.replace('@kkszki.hu', '')
+   let error = form?.error;
    let password;
    let passwordConfirm;
 </script>
 
-<main in:fade={{duration: 180}} class="">
+<main in:fade={{duration: 180}} class="font-sofia">
    <div class="login flex flex-col items-center mt-24">
       <h1 class="text-blue-1 text-5xl font-extrabold">Kandó Büfé</h1>
       <h2 class="text-blue-1 text-2xl font-bold mt-12 mb-6">Regisztráció</h2>
@@ -23,8 +24,8 @@
             <button in:fade={{duration: 400}} class="bg-blue-1 text-white text-lg px-8 py-2 mt-6 rounded-md font-semibold">Regisztrálás</button>          
          {/if}
          <br>
-         {#if form?.error}
-            <p id="error" class="text-red-1 text-lg font-semibold">{form?.error}</p>
+         {#if error && !password || error && !password && !email}
+            <p id="error" class="text-red-1 text-lg text-center px-2 font-semibold">{form?.error}</p>
          {/if}
       </form>
 

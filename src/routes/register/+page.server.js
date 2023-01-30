@@ -21,7 +21,7 @@ export const actions = {
 					return fail(400, { name: body.name, email: body.email, error: 'A jelszavad legalább 8 és maximum 72 karakter lehet.' });
 				}
 			}
-			else if (err.data.data.email) { // email-lel van baj
+			else if (err.data.data.email.code) { // email-lel van baj
 				return fail(400, { name: body.name, email: body.email, error: 'Az email helytelen vagy már használatban van.' });
 			}
 			else {

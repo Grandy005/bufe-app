@@ -15,7 +15,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sofia : ['Sofia Sans', 'sans-serif']
+        sofia : ['Sofia sans', 'sans serif']
       },
       fontWeight: {
         extrablack : "900"

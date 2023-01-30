@@ -1,5 +1,5 @@
 let splash = [
-	'Az otthon készitett étel sokkal egészségesebb.',
+	'Az otthon készített étel sokkal egészségesebb.',
 	'Ezen az oldalon nem pörög a cookie.',
 	'Adsz egy csókot?',
 	'Valaki hozzányúlt a spagettimhez!',
@@ -11,7 +11,6 @@ let splash = [
 	'Nuraphone rossz.',
 	'Puppy linux < bármelyik másik distro.',
 	'Szigma himek nem használnak classokat.',
-	'Akik OTL-t hallgatnak nem számitanak.',
 	'Pár rendelés és utóléred a kövér macskáimat.',
 	'Tiborral ne húzz ujjat.',
 	'App bepukkasztva',

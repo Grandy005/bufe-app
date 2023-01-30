@@ -8,7 +8,7 @@ let error = form?.error
 let password
 </script>
 
-<main in:fade={{duration: 180}}>
+<main in:fade={{duration: 180}} class="font-sofia">
    <div class="login flex flex-col items-center mt-24">
       <h1 class="font-extrablack text-5xl text-blue-1">Kandó Büfé</h1>
       <h2 class="text-blue-1 text-2xl font-bold mt-12 mb-6">Bejelentkezés</h2>

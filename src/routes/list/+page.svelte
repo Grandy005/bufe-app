@@ -1,13 +1,15 @@
 <script>
    import { fly, slide } from 'svelte/transition';
-	import { Swiper, SwiperSlide } from 'swiper/svelte';
-	import 'swiper/css';
+   import { Swiper, SwiperSlide } from 'swiper/svelte';
+   import 'swiper/css';
    import { browser } from '$app/environment';
    import { cart, total } from '$lib/stores/Cart.js';
    import { navigation } from '$lib/stores/Navigation.js';
    import Topbar from '$lib/components/Topbar.svelte';
 
    export let data;
+
+	console.log(data.termekek);
 
 	let swiper;
    let cartshow = 0;
@@ -59,21 +61,21 @@
 	}
 </script>
 
-<main>
+<main class="font-sofia">
 
    <Topbar
       target={'Menü'}
       targeturl={'/'}
       text={'Termékek'}
-      background={'#252525'}
+      background={'#4BB1DE'}
       flyin={{y: -200}}
       hideProfile={0}
    ></Topbar>
 
-	<div class="search-container">
-		<div class="search">
-			<input type="text" bind:value={searchWord} on:input={search}>
-			<button on:click={() => {searchWord = ''; search()}}>❌</button>
+	<div class="flex justify-center">
+		<div class="flex items-center">
+			<input class="bg-gray-1 rounded-md my-2 mr-2 p-1"  placeholder=" Keresés" type="text" bind:value={searchWord} on:input={search}>
+			<button on:click={() => {searchWord = ''; search()}}><i class="fa-solid fa-xmark fa-2x text-red-1"></i></button>
 		</div>
 	</div>
 
@@ -87,50 +89,45 @@
 	on:swiper={e => {swiper = e.detail[0]}}
  	>
 		<SwiperSlide>
-			<div in:slide={{duration: 800}} class='list-grid'>
-				<div class='grid-container'>
-					{#each data.termekek as termek}
-						{#if termek.kategoria == 'Étel'}
-							<div class="inner-grid" class:elfogyott={termek.darab == 0}>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src='favicon.png' alt=''></a>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
-							</div>
-						{/if}
-					{/each}
-				</div>
+			<div in:slide={{duration: 800}} class='flex flex-col items-center'>
+				{#each data.termekek as termek}
+					{#if termek.kategoria == 'Étel'}
+						<div class="flex flex-row items-center w-80 flex-wrap justify-between bg-blue-1 px-2 py-2 rounded-md my-2 text-white" class:opacity-30={termek.darab == 0}>
+							
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src="/api/termekKepek/?termek={termek.id}" alt=""></a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
+						</div>
+					{/if}
+				{/each}
 			</div>
 		</SwiperSlide>
 
 		<SwiperSlide>
-			<div in:slide={{duration: 800}} class='list-grid'>
-				<div class='grid-container'>
-					{#each data.termekek as termek}
-						{#if termek.kategoria == 'Ital'}
-							<div class="inner-grid" class:elfogyott={termek.darab == 0}>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src='favicon.png' alt=''></a>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
-							</div>
-						{/if}
-					{/each}
-				</div>
+			<div in:slide={{duration: 800}} class='flex flex-col items-center'>
+				{#each data.termekek as termek}
+					{#if termek.kategoria == 'Ital'}
+						<div class="flex flex-row items-center w-80 flex-wrap justify-between bg-blue-1 px-2 py-2 rounded-md my-2 text-white" class:elfogyott={termek.darab == 0}>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.kep}</a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
+						</div>
+					{/if}
+				{/each}
 			</div>
 		</SwiperSlide>
 
 		<SwiperSlide>
-			<div in:slide={{duration: 800}} class='list-grid'>
-				<div class='grid-container'>
-					{#each data.termekek as termek}
-						{#if termek.kategoria == 'Nasi'}
-							<div class="inner-grid" class:elfogyott={termek.darab == 0}>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src='favicon.png' alt=''></a>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
-								<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
-							</div>
-						{/if}
-					{/each}
-				</div>
+			<div in:slide={{duration: 800}} class='flex flex-col items-center'>
+				{#each data.termekek as termek}
+					{#if termek.kategoria == 'Nasi'}
+						<div class="flex flex-row items-center w-80 flex-wrap justify-between bg-blue-1 px-2 py-2 rounded-md my-2 text-white" class:elfogyott={termek.darab == 0}>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.kep}</a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
+						</div>
+					{/if}
+				{/each}
 			</div>
 		</SwiperSlide>
  	</Swiper>
@@ -161,162 +158,3 @@
  {/if}
 
 </main>
-
-<style lang='scss'>
-
-main {
-      width: 100%;
-      height: 100%;
-      overflow-y: scroll;
-      position: fixed;
-
-      .list-grid {
-         display: grid;
-
-         .grid-container {
-            margin: 3%;
-            margin-bottom: 40%;
-            display: grid;
-            row-gap: .6vh;
-
-               .inner-grid {
-                  display: grid;
-                  grid-template-columns: 25% 25% 25% 25%;
-                  background-color: #252525;
-                  border-radius: 1em;
-
-                  &:nth-of-type(2n) {
-                     background-color: #161616;
-                  }
-
-                  .grid-cell {
-                     display: flex;
-                     justify-content: center;
-                     align-items: center;
-                     color: rgba(255, 255, 255, 0.9);
-                     height: 90px;
-
-                     &:nth-of-type(2n) {  // termek neve cell
-                        grid-column-start: 2;
-                        grid-column-end: 4;
-                     }
-
-                     img {
-                        height: 100%;
-                     }
-                  }
-               }
-         }
-
-      }
-
-      .nav {
-         display: flex;
-         background-color: #252525ea;
-         color: rgba(255, 255, 255, 0.877);
-         height: 12vh;
-         width: 100vw;
-         position: fixed;
-         bottom: 0;
-         left: 0;
-         z-index: 20;
-         margin-bottom: 3vh;
-         border-radius: 3em;
-         transform: scale(60%);
-         font-weight: bold;
-         border: 1px solid rgba(255, 255, 255, 0.048);
-
-         div {
-            display: flex;
-            flex: 33.3%;
-            justify-content: center;
-            align-items: center;
-         }
-
-         .active {
-            padding: 2vh;
-            background-color: var(--accent-color);
-            border-radius: 20px;
-            color: black;
-            transition: all .25s ease-in-out;
-         }
-      }
-      
-      .cart {
-         position: fixed;
-         bottom: 0;
-         left: 0;
-         height: 3.5em;
-         background-color: var(--accent-color);
-         border-top-left-radius: 2.8em;
-         border-top-right-radius: 2.8em;
-         width: calc(98% - 2%); // * NAAAAGYON HACKY, de nem megy mashogy. Utálom a css-t
-         margin-left: 2%;
-         padding: .5ch 0;
-			z-index: 20;
-
-         .cart-grid {
-            height: 100%;
-            width: 100%;
-            display: grid;
-
-            .cart-cell {
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               color: black;
-
-               img {
-                  width: 12%;
-               }
-
-               b {
-                  font-size: large;
-                  margin-right: 3%;
-                  margin-left: 1%;
-                  margin-top: 1%;
-               }
-
-               p {
-                  margin-top: 1%;
-               }
-            }
-         }
-      }
-
-		.elfogyott {
-			opacity: 35%;
-		}
-
-		.search-container {
-			display: flex;
-			justify-content: center;
-			
-			.search {
-				display: flex;
-				align-items: center;
-				margin: 1em;
-
-				input {
-					background-color: black;
-					border: 0;
-					padding: .4em;
-					outline: 1px solid rgba(255, 255, 255, 0.863);
-					width: 100%;
-					border-radius: 1em;
-					color: white;
-				}
-
-				button {
-					margin-left: 1em;
-					border: 0;
-					outline: 1px solid rgba(255, 255, 255, 0.863);
-					padding: .5em;
-					border-radius: 1em;
-					background-color: var(--main-color);
-				}
-			}
-		}
-   }
-
- </style>
