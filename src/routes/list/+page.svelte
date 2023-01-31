@@ -9,10 +9,10 @@
 
    export let data;
 
-	console.log(data.termekek);
 
 	let swiper;
    let cartshow = 0;
+   console.log($navigation);
 
    if (browser) {
       if (localStorage.getItem('CartContent') != null) {
@@ -24,7 +24,7 @@
 
 	function navigate(i) {
 		swiper.slideTo(i);
-		$navigation = i
+		$navigation = i;
 	}
 
 	// Search Bar
@@ -67,14 +67,14 @@
       target={'Menü'}
       targeturl={'/'}
       text={'Termékek'}
-      background={'#4BB1DE'}
       flyin={{y: -200}}
       hideProfile={0}
+	  hideCart={0}
    ></Topbar>
 
 	<div class="flex justify-center">
 		<div class="flex items-center">
-			<input class="bg-gray-1 rounded-md my-2 mr-2 p-1"  placeholder=" Keresés" type="text" bind:value={searchWord} on:input={search}>
+			<input class="bg-gray-1 rounded-md mt-2 mb-4 mr-2 p-1"  placeholder=" Keresés" type="text" bind:value={searchWord} on:input={search}>
 			<button on:click={() => {searchWord = ''; search()}}><i class="fa-solid fa-xmark fa-2x text-red-1"></i></button>
 		</div>
 	</div>
@@ -93,8 +93,7 @@
 				{#each data.termekek as termek}
 					{#if termek.kategoria == 'Étel'}
 						<div class="flex flex-row items-center w-80 flex-wrap justify-between bg-blue-1 px-2 py-2 rounded-md my-2 text-white" class:opacity-30={termek.darab == 0}>
-							
-							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src="/api/termekKepek/?termek={termek.id}" alt=""></a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src="/api/termekKepek/?termek={termek.id}" alt="img" class="w-20 h-20 rounded-md"></a>
 							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
 							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
 						</div>
@@ -108,7 +107,7 @@
 				{#each data.termekek as termek}
 					{#if termek.kategoria == 'Ital'}
 						<div class="flex flex-row items-center w-80 flex-wrap justify-between bg-blue-1 px-2 py-2 rounded-md my-2 text-white" class:elfogyott={termek.darab == 0}>
-							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.kep}</a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src="/api/termekKepek/?termek={termek.id}" alt="img" class="w-20 h-20 rounded-md"></a>
 							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
 							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
 						</div>
@@ -122,7 +121,7 @@
 				{#each data.termekek as termek}
 					{#if termek.kategoria == 'Nasi'}
 						<div class="flex flex-row items-center w-80 flex-wrap justify-between bg-blue-1 px-2 py-2 rounded-md my-2 text-white" class:elfogyott={termek.darab == 0}>
-							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.kep}</a>
+							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'><img src="/api/termekKepek/?termek={termek.id}" alt="img" class="w-20 h-20 rounded-md"></a>
 							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.termek}</a>
 							<a data-sveltekit-noscroll href="{termek.termek}?referrer=/list" class='grid-cell'>{termek.ar} Ft</a>
 						</div>
@@ -132,29 +131,26 @@
 		</SwiperSlide>
  	</Swiper>
 
- {#if cartshow}
- <div in:fly={{y: 100}} style='margin-bottom: 6.5vh;' class='nav'>
-	 <div class='Étel' on:click={() => {navigate(0)}}><p class:active='{$navigation == 0}'>Étel</p></div>
-	 <div class='Ital' on:click={() => {navigate(1)}}><p class:active='{$navigation == 1}'>Ital</p></div>
-	 <div class='Nasi' on:click={() => {navigate(2)}}><p class:active='{$navigation == 2}'>Nasi</p></div>
- </div>
- 
- <a data-sveltekit-noscroll href="kosar?referrer=/list">
-	 <div in:fly={{y: 100, delay: 100}} class='cart'>
-		 <div class="cart-grid">
-			 <div class="cart-cell">
-				 <img src="shopping-basket.png" alt=""> <b>{$total.ar} Ft</b><p>({$total.darab} db termék a kosárban.)</p>
-			 </div>
-		 </div>
-	 </div>
- </a>
- 
- {:else}
- <div in:fly={{y: 200}} class='nav'>
-	 <div class='Étel' on:click={() => {navigate(0)}}><p class:active='{$navigation == 0}'>Étel</p></div>
-	 <div class='Ital' on:click={() => {navigate(1)}}><p class:active='{$navigation == 1}'>Ital</p></div>
-	 <div class='Nasi' on:click={() => {navigate(2)}}><p class:active='{$navigation == 2}'>Nasi</p></div>
- </div>
- {/if}
+	<div in:fly={{y: 200}} class='flex justify-center w-screen mt-4'>
+		<div class=" flex fex-row justify-between w-36 h-fit bg-gray-1 text-blue-1 p-2 rounded-md">
+			{#if $navigation == 0}
+			<div class='Étel cursor-pointer' on:click={() => {navigate(0)}}><p class:active='{$navigation == 0}'><span class="bg-blue-1 text-white rounded-md p-1">Étel</span></p></div>
+			<div class='Ital  cursor-pointer' on:click={() => {navigate(1)}}><p class:active='{$navigation == 1}'><span class="p-1">Ital</span></p></div>
+			<div class='Nasi cursor-pointer' on:click={() => {navigate(2)}}><p class:active='{$navigation == 2}'><span class="p-1">Nasi</span></p></div>
+			{:else if $navigation == 1}
+			<div class='Étel cursor-pointer' on:click={() => {navigate(0)}}><p class:active='{$navigation == 0}'><span class="p-1">Étel</span></p></div>
+			<div class='Ital  cursor-pointer' on:click={() => {navigate(1)}}><p class:active='{$navigation == 1}'><span class="bg-blue-1 text-white rounded-md p-1">Ital</span></p></div>
+			<div class='Nasi cursor-pointer' on:click={() => {navigate(2)}}><p class:active='{$navigation == 2}'><span class="p-1">Nasi</span></p></div>
+			{:else if $navigation == 2}
+			<div class='Étel cursor-pointer' on:click={() => {navigate(0)}}><p class:active='{$navigation == 0}'><span class="p-1">Étel</span></p></div>
+			<div class='Ital  cursor-pointer' on:click={() => {navigate(1)}}><p class:active='{$navigation == 1}'><span class="p-1">Ital</span></p></div>
+			<div class='Nasi cursor-pointer' on:click={() => {navigate(2)}}><p class:active='{$navigation == 2}'><span class="bg-blue-1 text-white rounded-md p-1">Nasi</span></p></div>
+			{/if}
+		</div>
+	</div>
 
 </main>
+
+<style>
+
+</style>

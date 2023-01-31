@@ -82,7 +82,6 @@
 			recalculate();
 		}
    }
-
 </script>
 
 <main in:fade={{duration: 180}}>
@@ -91,8 +90,8 @@
    target={'Vissza'}
    targeturl={$page.url.searchParams.get('referrer')}
    text={'Kosár'}
-   background={'none'}
    hideProfile={0}
+   hideCart={0}
    flyin={0}
    ></Topbar>
 

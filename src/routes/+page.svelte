@@ -19,9 +19,6 @@
 		<a href="/kosar?referrer=/" class="text-blue-1 bg-gray-1 text-lg py-4 rounded-md font-semibold mt-6 w-60">
 			<p class="text-center">Kosár</p>
 		</a>
-		<!--<a href="/{data.randomTermek}?referrer=/" class="bg-blue-1 text-white text-lg py-4 rounded-md font-semibold mt-6 w-60">
-			<p class="text-center">Random</p>
-		</a>-->
 		<h2 class="bottom-0 absolute mb-2">{data.splash}</h2>
 	</div>
 </main>
